@@ -1,37 +1,14 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize(
-    process.env.DB_DATABASE,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        host: process.env.DB_HOST,
-        dialect: "mysql",
-        logging: false,
-        define: {
-            //!Se utiliza para no haya conflicto de columnas en consultas
-            //!con relacion a fecha de cracion y actualizacion de modelos en express
-            //!Evitar pluralizacion en la busqueda de tablas
-            freezeTableName: true,
-            timestamps: true,
-            createdAt: "created_at",
-            updatedAt: "updated_at",
-            paranoid: true,
-            deletedAt: "deleted_at",
-        },
-        pool: {
-            max: 5,
-            min: 0,
-            acquire: 30000,
-            idle: 10000
-        },
-    },
-);
 
+const sequelize = new Sequelize(
+  "mysql://root:YqU3BqoE8EW6mmxQsFg3@containers-us-west-194.railway.app:7140/railway"
+);
 
 async function test_connection() {
     try {
         await sequelize.authenticate();
+        await sequelize.sync()
 
         console.log("Sequelize Conectado Exitosamente!");
         console.log("Happy Hacking!");

@@ -1,4 +1,6 @@
+const { request, response } = require("express");
 var random = require("generate-random-data");
+const User = require('../model/user')
 
 async function listarUsuarios() {
     let users = [
@@ -23,4 +25,14 @@ async function listarUsuarios() {
 }
 
 
-module.exports = { listarUsuarios }
+const getUsers = async(req = request, res = response) => {
+
+    const users = await User.findAll({
+        attributes: ['email']
+    });
+
+    return res.status(200).send({ users });
+
+}
+
+module.exports = { getUsers };

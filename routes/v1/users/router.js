@@ -1,12 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const users = require("./controller/users")
+const { getUsers } = require("./controller/users")
 
 
-router.get("/usuarios", async function (req, res) {
-  let usuarios = await users.listarUsuarios()
-  res.status(200).json(usuarios)
-});
+router.get("/usuarios", getUsers);
 
 
 module.exports = router;
