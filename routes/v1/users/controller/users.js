@@ -27,9 +27,7 @@ async function listarUsuarios() {
 
 const getUsers = async(req = request, res = response) => {
 
-    const users = await User.findAll({
-        attributes: ['email']
-    });
+    const users = await User.findAll();
 
     return res.status(200).send({ users });
 

@@ -1,14 +1,14 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../../../server/Database/sequelizeConnection");
 const Patient = require("../../patients/model/patient");
-const Vet = require("../../vets/model/vet");
+const { Vet } = require("../../vets/model/vet");
 
 
 
 const User = sequelize.define(
   "usuarios",
   {
-    email: {
+    correo: {
       type: DataTypes.STRING,
     },
     telefono: {

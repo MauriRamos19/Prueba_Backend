@@ -1,6 +1,5 @@
 const { Sequelize } = require("sequelize");
 
-
 const sequelize = new Sequelize(
   "mysql://root:YqU3BqoE8EW6mmxQsFg3@containers-us-west-194.railway.app:7140/railway"
 );
