@@ -1,13 +1,22 @@
 const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
-  "mysql://root:YqU3BqoE8EW6mmxQsFg3@containers-us-west-194.railway.app:7140/railway"
+    process.env.DB_DATABASE,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+        host: process.env.DB_HOST,
+        dialect: "mysql",
+        define: {
+            timestamps: false
+        }
+    },
 );
+
 
 async function test_connection() {
     try {
         await sequelize.authenticate();
-        await sequelize.sync()
 
         console.log("Sequelize Conectado Exitosamente!");
         console.log("Happy Hacking!");

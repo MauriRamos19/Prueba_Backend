@@ -6,9 +6,20 @@ const Patient = require("../../patients/model/patient");
 const Vet = sequelize.define(
   "veterinarios",
   {
+    id_veterinario: {
+        type: DataTypes.STRING,
+        primaryKey: true
+    },
     direccion_clinica: {
-        type: DataTypes.STRING
-    }
+      type: DataTypes.STRING,
+    },
+    id_usuario: {
+      type: DataTypes.STRING,
+      references: {
+        model: "usuarios",
+        key: "id_usuario",
+      },
+    },
   },
   {
     tableName: "veterinarios",
@@ -24,7 +35,7 @@ const Animal = sequelize.define(
   },
   {
     tableName: "animales",
-  }
+  },
 );
 
 
@@ -40,6 +51,6 @@ Vet.hasOne(VetAnimal);
 Animal.hasOne(VetAnimal);
 Vet.hasOne(Appointment);
 
-module.exports = { Vet, VetAnimal };
+module.exports = { Vet, Animal, VetAnimal };
 
 
