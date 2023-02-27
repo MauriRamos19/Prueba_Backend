@@ -41,7 +41,7 @@ const finishRegister = async (req, res) => {
 
         const { nombre_dueño, tipo_animal } = req.body;
         
-
+    
         const existPatient = await Patient.findOne({
           where: {
             id_usuario,

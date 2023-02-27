@@ -29,20 +29,41 @@ const Vet = sequelize.define(
 const Animal = sequelize.define(
   "animales",
   {
+    id_animal: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
     nombre: {
       type: DataTypes.STRING,
     },
   },
   {
     tableName: "animales",
-  },
+  }
 );
 
 
 
-const VetAnimal = sequelize.define(
-  "veterinario_animal"
-);
+const VetAnimal = sequelize.define("veterinario_animal", {
+    id: {
+        type: DataTypes.STRING,
+        primaryKey: true
+    },
+    id_veterinario: {
+        type: DataTypes.STRING,
+        references: {
+        model: "veterinarios",
+        key: "id_veterinario",
+        },
+    },
+    id_animal: {
+        type: DataTypes.STRING,
+        references: {
+        model: "animales",
+        key: "id_animal",
+        },
+    },
+});
 
 
 
