@@ -44,7 +44,7 @@ const Animal = sequelize.define(
 
 
 
-const VetAnimal = sequelize.define("veterinario_animal", {
+const VetAnimal = sequelize.define("veterinario_animals", {
     id: {
         type: DataTypes.STRING,
         primaryKey: true

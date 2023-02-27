@@ -1,5 +1,5 @@
 const { request, response } = require("express");
-const { Vet, Animal } = require("../model/vet");
+const { Vet, Animal, VetAnimal } = require("../model/vet");
 const { v4: uuid4 } = require('uuid')
 
 const getVets = async (req = request, res = response) => {
@@ -65,6 +65,21 @@ const postAnimal = async (req = request, res = response) => {
   return res.status(200).send({ ok: true, msg: 'Animal agregado'});
 };
 
+const postVetAnimal = async (req = request, res = response) => {
+
+    const { id_veterinario, id_animal } = req.body;
+
+  await VetAnimal.create({ id: uuid4(), id_veterinario, id_animal });
+
+  return res.status(200).send({ ok: true, msg: "Agregado" });
+};
 
 
-module.exports = { getVets, patchVet, deleteVet, getAnimals, postAnimal };
+module.exports = {
+  getVets,
+  patchVet,
+  deleteVet,
+  getAnimals,
+  postAnimal,
+  postVetAnimal,
+};

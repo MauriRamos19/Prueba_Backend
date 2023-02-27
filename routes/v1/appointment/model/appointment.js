@@ -22,10 +22,11 @@ const Appointment = sequelize.define("citas", {
     },
   },
   fecha: {
-    type: DataTypes.DATE,
+    type: DataTypes.STRING,
   },
   estado: {
     type: DataTypes.ENUM("PENDIENTE", "COMPLETADA", "CANCELADA"),
+    defaultValue: 'PENDIENTE'
   },
 });
 

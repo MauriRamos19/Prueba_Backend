@@ -81,11 +81,8 @@ const finishRegister = async (req, res) => {
         await vet.save();
 
         return res.status(200).send({ ok: true, vet });
-    }
-
-    
+    }    
 };
-
 
 
 const login = async(req,res) => {

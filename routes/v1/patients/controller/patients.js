@@ -1,5 +1,7 @@
 const { request, response } = require("express");
+const Appointment = require("../../appointment/model/appointment");
 const Patient = require("../model/patient");
+const { v4: uuid4 } = require('uuid');
 
 const getPatients = async (req = request, res = response) => {
   const pacients = await Patient.findAll({
@@ -47,4 +49,26 @@ const deletePatient = async (req = request, res = response) => {
     return res.status(200).send({ ok: true, msg: "Paciente eliminado" });
 };
 
-module.exports = { getPatients, patchPatient, deletePatient };
+const scheduleAppointment = async(req,res) => {
+    const { id_paciente, id_veterinario } = req.params;
+    const { fecha } = req.body;
+
+    const appointment = new Appointment({
+      id_cita: uuid4(),
+      id_veterinario: id_veterinario,
+      id_paciente: id_paciente,
+      fecha,
+    });
+
+    await appointment
+    .save()
+
+    return res.status(200).send({ appointment })
+}   
+
+module.exports = {
+  getPatients,
+  patchPatient,
+  deletePatient,
+  scheduleAppointment,
+};
