@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { getAppointment } = require("./controller/appointment");
+const { getAppointment, patchAppointment } = require("./controller/appointment");
 
 router.get("/citas", getAppointment);
-router.get("/citas/:id_cita", getAppointment);
+router.patch("/citas/:id_cita", patchAppointment);
 
 module.exports = router;

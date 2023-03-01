@@ -7,5 +7,6 @@ router.patch("/pacientes/:id_paciente", patchPatient);
 router.delete("/pacientes/:id_paciente", deletePatient);
 
 router.post("/pacientes/:id_paciente/veterinarios/:id_veterinario", scheduleAppointment);
+router.patch("/pacientes/:id_cita", patchPatient);
 
 module.exports = router;

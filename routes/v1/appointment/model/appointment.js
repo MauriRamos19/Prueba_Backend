@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../../../server/Database/sequelizeConnection");
+const Patient = require("../../patients/model/patient");
 
 
 const Appointment = sequelize.define("citas", {
@@ -14,7 +15,7 @@ const Appointment = sequelize.define("citas", {
       key: "id_veterinario",
     },
   },
-  id_paciente: {
+  pacienteId: {
     type: DataTypes.STRING,
     references: {
       model: "pacientes",
